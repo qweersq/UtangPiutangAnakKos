@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utang Piutang KOS Tadika Mesra</title>
+</head>
+
+<body>
+    <div class="container" style="text-align: center;
+    height: 100vh;">
+        <h2>Utang Piutang KOS Tadika Mesra</h2>
+        <hr />
+        <p><b>Bayar Apa?</b></p>
+        <select id="bayarApa" onchange="jenisBayar()">
+            <option value="Listrik" selected>Listrik</option>
+            <option value="Wifi">Wifi</option>
+            <option value="Air Galon">Air Galon</option>
+            <option value="Beras">Beras</option>
+            <option value="Gas">Gas</option>
+            <option value="Lainnya">Lainnya (tulis di deskripsi)</option>
+        </select>
+
+        <p><b> Deskrpisi bayar (optional):</b></p>
+        <input id="deskripsiBayar" type="text">
+
+        <br />
+        <br />
+        <p><b>Total Bayar :</b></p>
+        </p><input id="nominal" type="text">
+        <br />
+        <br />
+        <p><b>Siapa yang bayar : </b></p>
+        <select id="yangBayar" onchange="orangBayar()">
+            <option value="Pafras">Pafras</option>
+            <option value="Athailah">Athailah</option>
+            <option value="Faldi">Faldi</option>
+            <option value="Hadad" selected>Hadad</option>
+        </select>
+        <br />
+        <br />
+        <button id="simpan" style="font-weight: bold; height: 50px; width: 100px;">SIMPAN</button>
+    </div>
+
+    <script type="text/javascript">
+        function jenisBayar(){
+            var pembayaran = document.getElementById("bayarApa");
+            var selectedBayar = pembayaran.options[pembayaran.selectedIndex].value;
+            console.log(selectedBayar);
+        }
+        function orangBayar(){
+            var SiPembayar = document.getElementById("yangBayar");
+            var selectedSiPembayar = SiPembayar.options[SiPembayar.selectedIndex].value;
+            console.log(selectedSiPembayar);
+        }
+
+        document.getElementById("simpan").onclick = function () {
+            var nominal = document.getElementById("nominal").value;
+            var deskripsi = document.getElementById("deskripsiBayar").value;
+            console.log(nominal);
+            console.log(deskripsi);
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>
