@@ -19,10 +19,7 @@ const db = mysql.createConnection({ //ini adalah configurasi awal
 
 application.set("view engine", "ejs") // ini untuk ngeset view engine yg dipakai adalah ejs
 application.set("views", "views")  //ini untuk ngasih tau bahwa views/template engine(ejsnya)/html kita ada di folder views
-<<<<<<< HEAD
-=======
 application.use(express.static("public")); // untuk ngasih tau nge akses folder public
->>>>>>> e8e0b7351f6aa65be41a6bc8a75d525287a42e59
 
 
 // untuk menghubungkan ke mysql
@@ -35,11 +32,7 @@ db.connect((err) => { //terdapat callback yaitu errornya
         const sql = "SELECT * FROM KosTadikaMesra"  //versi mudahnya
         db.query(sql, (err, result) => {
             const dataBayar = JSON.parse(JSON.stringify(result)) //di parse dlu agar diterminal tidak muncul rawdatapocket lgi
-<<<<<<< HEAD
-            res.render("index", { data: dataBayar, title: "Pencatatan Pembayaran - Kos Pak Imam" }) //karena kita mau ngerender ke html yg ada di index, {} => supaya jadi objek
-=======
             res.render("index", { data: dataBayar, title: "Pencatatan Pembayaran" }) //karena kita mau ngerender ke html yg ada di index, {} => supaya jadi objek
->>>>>>> e8e0b7351f6aa65be41a6bc8a75d525287a42e59
         })
         // res.send(dataBayar)   // untuk menampilkan data di layar
     })
@@ -56,11 +49,7 @@ db.connect((err) => { //terdapat callback yaitu errornya
 })
 
 
-<<<<<<< HEAD
-application.listen(3000, () => (
-=======
 application.listen(8080, () => (
->>>>>>> e8e0b7351f6aa65be41a6bc8a75d525287a42e59
     console.log("server ready....")
 ))
 

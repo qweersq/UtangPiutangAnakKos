@@ -15,7 +15,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@400;500;700&family=PT+Serif:wght@400;700&family=Poppins:wght@400;500;700&display=swap"
         rel="stylesheet">
-
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -202,14 +201,6 @@
     <div style="margin-top: 30px;" class="container">
         <h2>Perhitungan Utang Piutang</h2>
         <div class="container">
-<<<<<<< HEAD
-            <p>Keterangan :</p>
-            <ul style="margin-top: -20px;">
-                <li>(-) artinya Utang</li>
-                <li>(+) artinya Piutang</li>
-            </ul>
-=======
->>>>>>> e8e0b7351f6aa65be41a6bc8a75d525287a42e59
             <h5>Pafras</h5>
             <ul>
                 <li id="totalAkhirPafrasHadad"></li>
@@ -516,8 +507,6 @@
             var untilTanggal = document.getElementById("sampaiTanggal").value;
             var untilBulan = document.getElementById("sampaiBulan").value;
             var untilTahun = document.getElementById("sampaiTahun").value;
-<<<<<<< HEAD
-=======
             var jumlah = 0;
             var TotalBayarHadad;
             var persentasePafras;
@@ -568,7 +557,6 @@
             var TotalBayarFaldi;
             var persentaseAthailah;
             var totalUtangFaldiAthailah = 0;
->>>>>>> e8e0b7351f6aa65be41a6bc8a75d525287a42e59
 
             document.getElementById("tableSemuaData").innerHTML = '<table id="tableSemuaData" class="table"><thead><tr><th scope="col">Si Pembayar</th><th scope="col">Bayar Apa?</th><th scope="col">Total Bayar</th><th scope="col">(%)Pafras</th><th scope="col">(%)Hadad</th><th scope="col">(%)Faldi</th><th scope="col">(%)Athailah</th><th scope="col">Waktu Bayar</th></tr></thead><tbody id="loopingDataSort"></tbody><thead><tr><th scope="col">Total Pengeluaran</th><th scope="col"></th><th scope="col" id="totalPengeluaran"></th><th scope="col"></th><th scope="col"></th><th scope="col"></th><th scope="col"></th><th scope="col"></th></tr></thead></table>';
 
@@ -576,10 +564,6 @@
             <% for (let DataBayar of data) { %>
                 if (<%= DataBayar.tahun %> >= fromTahun && <%= DataBayar.bulan %> >= fromBulan && <%= DataBayar.tanggal %> >= fromTanggal) {
                     if (<%= DataBayar.tahun %> <= untilTahun && <%= DataBayar.bulan %> <= untilBulan && <%= DataBayar.tanggal %> <= untilTanggal) {
-<<<<<<< HEAD
-                        console.log(<%= DataBayar.bulan %>)
-=======
->>>>>>> e8e0b7351f6aa65be41a6bc8a75d525287a42e59
 
                         xLooping = xLooping + "<tr><th  scope=\"row\"><%= DataBayar.siPembayar %></th><td ><%= DataBayar.bayarApa %></td><td ><%= DataBayar.totalBayar %></td><td ><%= DataBayar.persenPafras %></td><td><%= DataBayar.persenHadad %></td><td><%= DataBayar.persenFaldi %></td><td><%= DataBayar.persenAthailah %></td><td><%= DataBayar.tanggal %>-<%= DataBayar.bulan %>-<%= DataBayar.tahun %></td></tr>";
 
@@ -593,11 +577,6 @@
                         // document.getElementById("persenFaldi").innerHTML = '<%= DataBayar.persenFaldi %>';
                         // document.getElementById("persenAthailahh").innerHTML = '<%= DataBayar.persenAthailah %>';
                         // document.getElementById("tanggall").innerHTML = '<%= DataBayar.tanggal %>-<%= DataBayar.bulan %>-<%= DataBayar.tahun %>';
-<<<<<<< HEAD
-                    }
-                }
-            <% } %>
-=======
 
 
                         // Hitung Total Semua pembayaran
@@ -768,7 +747,6 @@
 
             }
 
->>>>>>> e8e0b7351f6aa65be41a6bc8a75d525287a42e59
         }
     </script>
 </body>
