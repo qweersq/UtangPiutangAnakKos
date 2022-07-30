@@ -57,7 +57,7 @@
                         <option value="Athailah">Athailah</option>
                     </select>
                     <p id="gantiTotalBayar" style="margin-top: 20px;"> <b> Total Pembayaran Listrik</b></p>
-                    <input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control">
+                    <input pattern="\d*" style="margin-top: 20px;" type="text" name="totalBayar" class="form-control">
                     <div>
                         <p id="gantiPersentasePembagian" style="margin-top: 20px;"> <b>Persentase Pembagian Listrik</b>
                         </p>
@@ -68,9 +68,11 @@
                                     <td><b>Hadad(%)</b></td>
                                 </tr>
                                 <tr>
-                                    <td><input style="margin-right: 5%; width: 100%;" name="persenPafras" type="text">
+                                    <td><input pattern="\d*" style="margin-right: 5%; width: 100%;" name="persenPafras"
+                                            type="text">
                                     </td>
-                                    <td><input style="margin-right: 5%; width: 100%;" name="persenHadad" type="text">
+                                    <td><input pattern="\d*" style="margin-right: 5%; width: 100%;" name="persenHadad"
+                                            type="text">
                                     </td>
                                 </tr>
                             </tbody>
@@ -82,26 +84,29 @@
                                     <td> <b>Athailah(%)</b></td>
                                 </tr>
                                 <tr>
-                                    <td><input style="margin-right: 5%; width: 100%;" name="persenFaldi" type="text">
+                                    <td><input pattern="\d*" style="margin-right: 5%; width: 100%;" name="persenFaldi"
+                                            type="text">
                                     </td>
-                                    <td><input style="margin-right: 5%; width: 100%;" name="persenAthailah" type="text">
+                                    <td><input pattern="\d*" style="margin-right: 5%; width: 100%;"
+                                            name="persenAthailah" type="text">
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
 
 
-                        <a><b> Tanggal Bayar </b></a><br />
+                        <a><b> Tanggal Bayar (bb/mm/yyyy) </b></a><br />
 
                         <table class="table" style="margin-bottom: 10px;">
                             <tbody>
                                 <tr>
                                     <div class="inputTime">
-                                        <input style="width: 75%; margin-right: 5px;" placeholder="Tanggal" type="text"
-                                            name="tanggal">
-                                        <input style="width: 75%; margin-right: 5px;" placeholder="Bulan" type="text"
-                                            name="bulan">
-                                        <input style="width: 150%;" placeholder="Tahun" type="text" name="tahun"><br />
+                                        <input pattern="\d*" style="width: 75%; margin-right: 5px;"
+                                            placeholder="Tanggal" type="text" name="tanggal">
+                                        <input pattern="\d*" style="width: 75%; margin-right: 5px;" placeholder="Bulan"
+                                            type="text" name="bulan">
+                                        <input pattern="\d*" style="width: 150%;" placeholder="Tahun" type="text"
+                                            name="tahun"><br />
                                     </div>
                                 </tr>
                             </tbody>
@@ -116,22 +121,23 @@
         <h2 style="margin-top: 50px;">History Pembayaran selama ....</h2>
         <div class="container">
             <div style="margin-bottom:20px;">
-                <a><b> Dari </b></a>
-                <input style="width: 10%;  margin-left:1%;" placeholder="Tanggal" type="text" id="dariTanggal"
-                    value="01">
-                <input style="width: 10%;  margin-left:0,5%;" placeholder="Bulan" type="text" id="dariBulan" value="07">
-                <input style="width: 30%;margin-left:0,5%; margin-right:1%;" placeholder="Tahun" type="text"
-                    id="dariTahun" value="2022">
+                <a><b> Dari (bb/mm/yyyy)</b></a><br/>
+                <input pattern="\d*" style="width: 10%;" placeholder="Tanggal" type="text"
+                    id="dariTanggal" value="01">
+                <input pattern="\d*" style="width: 10%;  margin-left:0,5%;" placeholder="Bulan" type="text"
+                    id="dariBulan" value="07">
+                <input pattern="\d*" style="width: 30%;margin-left:0,5%; margin-right:1%;" placeholder="Tahun"
+                    type="text" id="dariTahun" value="2022">
             </div>
 
             <div style="margin-bottom:20px;">
-                <a><b> Sampai </b></a>
-                <input style="width: 10%;  margin-left:1%;" placeholder="Tanggal" type="text" id="sampaiTanggal"
-                    value="30">
-                <input style="width: 10%;  margin-left:0,5%;" placeholder="Bulan" type="text" id="sampaiBulan"
-                    value="07">
-                <input style="width: 30%;margin-left:0,5%;" placeholder="Tahun" type="text" id="sampaiTahun"
-                    value="2022">
+                <a><b> Sampai (bb/mm/yyyy)</b></a><br/>
+                <input pattern="\d*" style="width: 10%;" placeholder="Tanggal" type="text"
+                    id="sampaiTanggal" value="30">
+                <input pattern="\d*" style="width: 10%;  margin-left:0,5%;" placeholder="Bulan" type="text"
+                    id="sampaiBulan" value="07">
+                <input pattern="\d*" style="width: 30%;margin-left:0,5%;" placeholder="Tahun" type="text"
+                    id="sampaiTahun" value="2022">
             </div>
             <button class="btn btn-dark" type="submit" id="cariDataa" onclick="cariData()">Cari</button>
         </div>
@@ -203,6 +209,7 @@
     <div style="margin-top: 30px;" class="container">
         <h2>Perhitungan Utang Piutang</h2>
         <div class="container">
+            <h3 id="testKoma"></h3>
             <h5>Pafras</h5>
             <ul>
                 <li id="totalAkhirPafrasHadad"></li>
@@ -238,6 +245,10 @@
         crossorigin="anonymous"></script>
     <script type="text/javascript">
 
+        function tambahKoma(angka) {
+            return angka.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+        }
+
         // Hitung Total Semua pembayaran
         var jumlah = 0;
             <% for (let DataBayar of data) { %>
@@ -270,11 +281,11 @@
         var totalAkhirPafrasHadad = totalUtangHadadPafras - totalUtangPafrasHadad;
 
         if (totalAkhirPafrasHadad <= 0) {
-            document.getElementById("totalAkhirPafrasHadad").innerHTML = '<a> Pafras punya utang ke Hadad sebesar Rp.</a>' + (-1 * totalAkhirPafrasHadad);
-            document.getElementById("totalAkhirPafrasHadad2").innerHTML = '<a> Pafras punya utang ke Hadad sebesar Rp.</a>' + (-1 * totalAkhirPafrasHadad);
+            document.getElementById("totalAkhirPafrasHadad").innerHTML = '<a> Pafras punya utang ke Hadad sebesar Rp. </a>' + tambahKoma(-1 * totalAkhirPafrasHadad);
+            document.getElementById("totalAkhirPafrasHadad2").innerHTML = '<a> Pafras punya utang ke Hadad sebesar Rp. </a>' + tambahKoma(-1 * totalAkhirPafrasHadad);
         } else {
-            document.getElementById("totalAkhirPafrasHadad").innerHTML = '<a> Hadad punya utang ke Pafras sebesar Rp.</a>' + totalAkhirPafrasHadad;
-            document.getElementById("totalAkhirPafrasHadad2").innerHTML = '<a> Hadad punya utang ke Pafras sebesar Rp.</a>' + totalAkhirPafrasHadad;
+            document.getElementById("totalAkhirPafrasHadad").innerHTML = '<a> Hadad punya utang ke Pafras sebesar Rp. </a>' + tambahKoma(totalAkhirPafrasHadad);
+            document.getElementById("totalAkhirPafrasHadad2").innerHTML = '<a> Hadad punya utang ke Pafras sebesar Rp. </a>' + tambahKoma(totalAkhirPafrasHadad);
         }
 
 
@@ -447,54 +458,46 @@
 
 
         document.getElementById("Listrik").onclick = function () {
-            // document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Listrik? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Listrik</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Listrik</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="Listrik" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
             document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Listrik ?</b>';
             document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Listrik </b>';
             document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Listrik </b>';
         }
         document.getElementById("Wifi").onclick = function () {
-            // document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Wifi? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Wifi</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Wifi</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="Wifi" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
             document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Wifi ?</b>';
             document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Wifi </b>';
             document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Listrik </b>';
         }
         document.getElementById("Beras").onclick = function () {
-            // document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Beras? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Beras</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Beras</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="Beras" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
             document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Beras ?</b>';
             document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Beras </b>';
             document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Beras </b>';
 
         }
         document.getElementById("AirGalon").onclick = function () {
-            // document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Air Galon? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Air Galon</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Air Galon</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="AirGalon" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
             document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Air Galon ?</b>';
             document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Air Galon </b>';
             document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Air Galon </b>';
         }
         document.getElementById("Gas").onclick = function () {
-            // document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Gas? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Gas</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Gas</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="Gas" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
             document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Gas ?</b>';
             document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Gas </b>';
             document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Gas </b>';
 
         }
         document.getElementById("SabunCuciPiring").onclick = function () {
-            // document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Sabun Cuci Piring? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Sabun Cuci Piring</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Sabun Cuci Piring</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="SabunCuciPiring" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
             document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Sabun Cuci Piring ?</b>';
             document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Sabun Cuci Piring </b>';
             document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Sabun Cuci Piring </b>';
 
         }
         document.getElementById("Minyak").onclick = function () {
-            // document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Minyak? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Minyak</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Minyak</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="Minyak" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
             document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Minyak ?</b>';
             document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Minyak </b>';
             document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Minyak </b>';
 
         }
         document.getElementById("Lainnya").onclick = function () {
-            // document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Bayar Apa?</b></p><input style="margin-top: 20px;" type="text" name="button" class="form-control"><p style="margin-top: 20px;"> <b> Siapa yang bayar? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
-            document.getElementById("isiBayarApa").innerHTML = '<p style="margin-top: 20px;"> <b> Bayar Apa?</b></p><input style="margin-top: 20px;" type="text" class="form-control">';
+            document.getElementById("isiBayarApa").innerHTML = '<p style="margin-top: 20px;"> <b> Bayar Apa?</b></p><input pattern="\d*" style="margin-top: 20px;" type="text" class="form-control">';
             document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar ?</b>';
             document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran </b>';
             document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian </b>';
