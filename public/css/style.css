@@ -1,0 +1,43 @@
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.containerJudul {
+  width: 100%;
+  background-color: #212529;
+  text-align: center;
+  padding: 15px;
+  border-bottom-right-radius: 10%;
+  border-bottom-left-radius: 10%;
+}
+#deskripsiJudul {
+  font-size: 14px;
+  text-align: center;
+  color: white;
+
+}
+#judul {
+  font-size: 26px;
+  text-align: center;
+  color: white;
+  margin-bottom: -2px;
+}
+
+.containerTableData {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+  z-index: 1;
+  overflow: auto hidden;
+  transform: translate3d(0px, 0px, 0px);
+  will-change: scroll-position, transform;
+}
+
+.containerApaYangDibayar {
+  margin-top: 30px;
+}
+
+.inputTime{
+  display: flex;
+  margin: 5px 20px;
+}

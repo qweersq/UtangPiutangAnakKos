@@ -16,111 +16,186 @@
         href="https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@400;500;700&family=PT+Serif:wght@400;700&family=Poppins:wght@400;500;700&display=swap"
         rel="stylesheet">
 
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+    <!-- data berikut berasal dari backend -->
+    <!-- klo single datanya pake %= -->
+    <div class="containerJudul">
+        <h5 id="judul">
+            (development)
+            <%= title %>
+        </h5>
+        <a id="deskripsiJudul"> Utang Piutang Anak Kos Pak Imam </a>
+    </div>
     <div class="container">
-        <!-- data berikut berasal dari backend -->
-        <!-- klo single datanya pake %= -->
-        <h1 style="text-align: center;">
-           (Staging) <%= title %>
-        </h1>
-        <h3 style="margin-top: 10px;">Masukkan data Pembayaran</h3>
-
-
-
-        <p style="margin-top: 20px;"> <b> Apa yang dibayar? </b></p>
-        <button style="margin-top: 10px;" type="submit" class="btn btn-dark" id="Listrik">Listrik</button>
-        <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="Wifi">Wifi</button>
-        <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="Beras">Beras</button>
-        <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="AirGalon">Air Galon</button>
-        <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="Gas">Gas</button>
-        <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="SabunCuciPiring">Sabun Cuci
-            Piring</button>
-        <button style="margin-top: 10px;" type="submit" class="btn btn-dark" id="Minyak">Minyak</button>
-        <button style="margin-top: 10px;" type="submit" class="btn btn-dark" id="Lainnya">Lainnya</button>
-        <hr />
+        <div class="containerApaYangDibayar">
+            <h5><b>Masukkan data Pembayaran</b></h5>
+            <div class="container">
+                <p style="margin: 20px 0 -5px 0;"> <b> Apa yang dibayar?</b></p>
+                <button style="margin-top: 10px;" type="submit" class="btn btn-dark" id="Listrik">Listrik</button>
+                <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="Wifi">Wifi</button>
+                <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="Beras">Beras</button>
+                <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="AirGalon">Air Galon</button>
+                <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="Gas">Gas</button>
+                <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="SabunCuciPiring">Sabun Cuci
+                    Piring</button>
+                <button style="margin-top: 10px;" type="submit" class="btn btn-dark" id="Minyak">Minyak</button>
+                <button style="margin-top: 10px;" type="submit" class="btn btn-dark" id="Lainnya">Lainnya</button>
+            </div>
+        </div>
 
         <div id="containerGantiGanti" class="container">
-            <p>Silahkan pilih apa yang dibayar</p>
+            <form action="/tambah" method="post">
+                <div id="isiBayarApa"></div>
+                <p id="gantiSiapaYgBayar" style="margin-top: 20px;"><b> Siapa yang bayar Listrik ?</b></p>
+                <div><select class="form-select" name="siPembayar">
+                        <option value="Pafras">Pafras</option>
+                        <option value="Hadad">Hadad</option>
+                        <option value="Faldi">Faldi</option>
+                        <option value="Athailah">Athailah</option>
+                    </select>
+                    <p id="gantiTotalBayar" style="margin-top: 20px;"> <b> Total Pembayaran Listrik</b></p>
+                    <input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control">
+                    <div>
+                        <p id="gantiPersentasePembagian" style="margin-top: 20px;"> <b>Persentase Pembagian Listrik</b>
+                        </p>
+                        <table class="table" style="margin-bottom: 30px;">
+                            <tbody>
+                                <tr>
+                                    <td> <b>Pafras(%)</b></td>
+                                    <td><b>Hadad(%)</b></td>
+                                </tr>
+                                <tr>
+                                    <td><input style="margin-right: 5%; width: 100%;" name="persenPafras" type="text">
+                                    </td>
+                                    <td><input style="margin-right: 5%; width: 100%;" name="persenHadad" type="text">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table" style="margin-bottom: 30px;">
+                            <tbody>
+                                <tr>
+                                    <td> <b>Faldi(%)</b></td>
+                                    <td> <b>Athailah(%)</b></td>
+                                </tr>
+                                <tr>
+                                    <td><input style="margin-right: 5%; width: 100%;" name="persenFaldi" type="text">
+                                    </td>
+                                    <td><input style="margin-right: 5%; width: 100%;" name="persenAthailah" type="text">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                        <a><b> Tanggal Bayar </b></a><br />
+
+                        <table class="table" style="margin-bottom: 10px;">
+                            <tbody>
+                                <tr>
+                                    <div class="inputTime">
+                                        <input style="width: 75%; margin-right: 5px;" placeholder="Tanggal" type="text"
+                                            name="tanggal">
+                                        <input style="width: 75%; margin-right: 5px;" placeholder="Bulan" type="text"
+                                            name="bulan">
+                                        <input style="width: 150%;" placeholder="Tahun" type="text" name="tahun"><br />
+                                    </div>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button name="button" value="Listrik" type="submit" class="btn btn-primary"
+                            style="margin-top: 20px;">Masukkan Data</button>
+                    </div>
+                </div>
+            </form>
         </div>
 
         <h2 style="margin-top: 50px;">History Pembayaran selama ....</h2>
-        <div style="margin-bottom:20px;">
-            <a><b> Dari </b></a>
-            <input style="width: 5%;  margin-left:1%;" placeholder="Tanggal" type="text" id="dariTanggal">
-            <input style="width: 5%;  margin-left:0,5%;" placeholder="Bulan" type="text" id="dariBulan">
-            <input style="width: 5%;margin-left:0,5%; margin-right:1%;" placeholder="Tahun" type="text" id="dariTahun">
-            <a><b> Sampai </b></a>
-            <input style="width: 5%;  margin-left:1%;" placeholder="Tanggal" type="text" id="sampaiTanggal">
-            <input style="width: 5%;  margin-left:0,5%;" placeholder="Bulan" type="text" id="sampaiBulan">
-            <input style="width: 5%;margin-left:0,5%;" placeholder="Tahun" type="text" id="sampaiTahun">
+        <div class="container">
+            <div style="margin-bottom:20px;">
+                <a><b> Dari </b></a>
+                <input style="width: 10%;  margin-left:1%;" placeholder="Tanggal" type="text" id="dariTanggal"
+                    value="01">
+                <input style="width: 10%;  margin-left:0,5%;" placeholder="Bulan" type="text" id="dariBulan" value="07">
+                <input style="width: 30%;margin-left:0,5%; margin-right:1%;" placeholder="Tahun" type="text"
+                    id="dariTahun" value="2022">
+            </div>
+
+            <div style="margin-bottom:20px;">
+                <a><b> Sampai </b></a>
+                <input style="width: 10%;  margin-left:1%;" placeholder="Tanggal" type="text" id="sampaiTanggal"
+                    value="30">
+                <input style="width: 10%;  margin-left:0,5%;" placeholder="Bulan" type="text" id="sampaiBulan"
+                    value="07">
+                <input style="width: 30%;margin-left:0,5%;" placeholder="Tahun" type="text" id="sampaiTahun"
+                    value="2022">
+            </div>
             <button class="btn btn-dark" type="submit" id="cariDataa" onclick="cariData()">Cari</button>
         </div>
 
-        <table id="tableSemuaData" class="table">
-            <thead>
-                <tr>
-
-                    <th scope="col">Si Pembayar</th>
-                    <th scope="col">Bayar Apa?</th>
-                    <th scope="col">Total Bayar</th>
-                    <th scope="col">(%)Pafras</th>
-                    <th scope="col">(%)Hadad</th>
-                    <th scope="col">(%)Faldi</th>
-                    <th scope="col">(%)Athailah</th>
-                    <th scope="col">Waktu Bayar</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <% for (let DataBayar of data) { %>
+        <div class="containerTableData">
+            <table id="tableSemuaData" class="table">
+                <thead>
                     <tr>
-                        <th scope="row">
-                            <%= DataBayar.siPembayar %>
-                        </th>
-                        <td>
-                            <%= DataBayar.bayarApa %>
-                        </td>
-                        <td>
-                            <%= DataBayar.totalBayar %>
-                        </td>
-                        <td>
-                            <%= DataBayar.persenPafras %>
-                        </td>
-                        <td>
-                            <%= DataBayar.persenHadad %>
-                        </td>
-                        <td>
-                            <%= DataBayar.persenFaldi %>
-                        </td>
-                        <td>
-                            <%= DataBayar.persenAthailah %>
-                        </td>
-                        <td>
-                            <%= DataBayar.tanggal %>-<%= DataBayar.bulan %>-<%= DataBayar.tahun %>
-                        </td>
+
+                        <th scope="col">Si Pembayar</th>
+                        <th scope="col">Bayar Apa?</th>
+                        <th scope="col">Total Bayar</th>
+                        <th scope="col">(%)Pafras</th>
+                        <th scope="col">(%)Hadad</th>
+                        <th scope="col">(%)Faldi</th>
+                        <th scope="col">(%)Athailah</th>
+                        <th scope="col">Waktu Bayar</th>
                     </tr>
-                    <% } %>
-            </tbody>
-            <thead>
-                <tr>
-                    <th scope="col">Total Pengeluaran</th>
-                    <th scope="col"></th>
-                    <th scope="col" id="totalPengeluaran"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-        </table>
+                </thead>
+                <tbody>
+
+                    <% for (let DataBayar of data) { %>
+                        <tr>
+                            <th scope="row">
+                                <%= DataBayar.siPembayar %>
+                            </th>
+                            <td>
+                                <%= DataBayar.bayarApa %>
+                            </td>
+                            <td>
+                                <%= DataBayar.totalBayar %>
+                            </td>
+                            <td>
+                                <%= DataBayar.persenPafras %>
+                            </td>
+                            <td>
+                                <%= DataBayar.persenHadad %>
+                            </td>
+                            <td>
+                                <%= DataBayar.persenFaldi %>
+                            </td>
+                            <td>
+                                <%= DataBayar.persenAthailah %>
+                            </td>
+                            <td>
+                                <%= DataBayar.tanggal %>-<%= DataBayar.bulan %>-<%= DataBayar.tahun %>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th scope="col">Total Pengeluaran</th>
+                        <th scope="col"></th>
+                        <th scope="col" id="totalPengeluaran"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
 
 
     </div>
@@ -128,11 +203,6 @@
     <div style="margin-top: 30px;" class="container">
         <h2>Perhitungan Utang Piutang</h2>
         <div class="container">
-            <p>Keterangan :</p>
-            <ul style="margin-top: -20px;">
-                <li>(-) artinya Utang</li>
-                <li>(+) artinya Piutang</li>
-            </ul>
             <h5>Pafras</h5>
             <ul>
                 <li id="totalAkhirPafrasHadad"></li>
@@ -377,28 +447,58 @@
 
 
         document.getElementById("Listrik").onclick = function () {
-            document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Listrik? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Listrik</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Listrik</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="Listrik" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
+            // document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Listrik? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Listrik</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Listrik</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="Listrik" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
+            document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Listrik ?</b>';
+            document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Listrik </b>';
+            document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Listrik </b>';
         }
         document.getElementById("Wifi").onclick = function () {
-            document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Wifi? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Wifi</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Wifi</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="Wifi" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
+            // document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Wifi? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Wifi</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Wifi</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="Wifi" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
+            document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Wifi ?</b>';
+            document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Wifi </b>';
+            document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Listrik </b>';
         }
         document.getElementById("Beras").onclick = function () {
-            document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Beras? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Beras</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Beras</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="Beras" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
+            // document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Beras? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Beras</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Beras</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="Beras" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
+            document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Beras ?</b>';
+            document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Beras </b>';
+            document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Beras </b>';
+
         }
         document.getElementById("AirGalon").onclick = function () {
-            document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Air Galon? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Air Galon</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Air Galon</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="AirGalon" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
+            // document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Air Galon? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Air Galon</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Air Galon</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="AirGalon" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
+            document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Air Galon ?</b>';
+            document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Air Galon </b>';
+            document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Air Galon </b>';
         }
         document.getElementById("Gas").onclick = function () {
-            document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Gas? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Gas</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Gas</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="Gas" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
+            // document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Gas? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Gas</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Gas</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="Gas" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
+            document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Gas ?</b>';
+            document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Gas </b>';
+            document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Gas </b>';
+
         }
         document.getElementById("SabunCuciPiring").onclick = function () {
-            document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Sabun Cuci Piring? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Sabun Cuci Piring</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Sabun Cuci Piring</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="SabunCuciPiring" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
+            // document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Sabun Cuci Piring? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Sabun Cuci Piring</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Sabun Cuci Piring</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="SabunCuciPiring" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
+            document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Sabun Cuci Piring ?</b>';
+            document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Sabun Cuci Piring </b>';
+            document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Sabun Cuci Piring </b>';
+
         }
         document.getElementById("Minyak").onclick = function () {
-            document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Minyak? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Minyak</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Minyak</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="Minyak" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
+            // document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Minyak? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Minyak</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Minyak</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="Minyak" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
+            document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Minyak ?</b>';
+            document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Minyak </b>';
+            document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Minyak </b>';
+
         }
         document.getElementById("Lainnya").onclick = function () {
-            document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Bayar Apa?</b></p><input style="margin-top: 20px;" type="text" name="button" class="form-control"><p style="margin-top: 20px;"> <b> Siapa yang bayar? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
+            // document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Bayar Apa?</b></p><input style="margin-top: 20px;" type="text" name="button" class="form-control"><p style="margin-top: 20px;"> <b> Siapa yang bayar? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
+            document.getElementById("isiBayarApa").innerHTML = '<p style="margin-top: 20px;"> <b> Bayar Apa?</b></p><input style="margin-top: 20px;" type="text" class="form-control">';
+            document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar ?</b>';
+            document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran </b>';
+            document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian </b>';
+
         }
 
         document.getElementById("cariDataa").onclick = function cariData() {
@@ -409,6 +509,56 @@
             var untilTanggal = document.getElementById("sampaiTanggal").value;
             var untilBulan = document.getElementById("sampaiBulan").value;
             var untilTahun = document.getElementById("sampaiTahun").value;
+            var jumlah = 0;
+            var TotalBayarHadad;
+            var persentasePafras;
+            var totalUtangPafrasHadad = 0;
+
+            var TotalBayarPafras;
+            var persentaseHadad;
+            var totalUtangHadadPafras = 0;
+
+            var TotalBayarFaldi;
+            var persentasePafras;
+            var totalUtangPafrasFaldi = 0;
+
+            var TotalBayarPafras;
+            var persentaseFaldi;
+            var totalUtangFaldiPafras = 0;
+
+            var TotalBayarAthailah;
+            var persentasePafras;
+            var totalUtangPafrasAthailah = 0;
+
+            var TotalBayarPafras;
+            var persentaseAthailah;
+            var totalUtangAthailahPafras = 0;
+
+            //VAR HADAD
+            var TotalBayarFaldi;
+            var persentaseHadad;
+            var totalUtangHadadFaldi = 0;
+
+            var TotalBayarHadad;
+            var persentaseFaldi;
+            var totalUtangFaldiHadad = 0;
+
+            var TotalBayarAthailah;
+            var persentaseHadad;
+            var totalUtangHadadAthailah = 0;
+
+            var TotalBayarHadad;
+            var persentaseAthailah;
+            var totalUtangAthailahHadad = 0;
+
+            //VAR FALDI
+            var TotalBayarAthailah;
+            var persentaseFaldi;
+            var totalUtangAthailahFaldi = 0;
+
+            var TotalBayarFaldi;
+            var persentaseAthailah;
+            var totalUtangFaldiAthailah = 0;
 
             document.getElementById("tableSemuaData").innerHTML = '<table id="tableSemuaData" class="table"><thead><tr><th scope="col">Si Pembayar</th><th scope="col">Bayar Apa?</th><th scope="col">Total Bayar</th><th scope="col">(%)Pafras</th><th scope="col">(%)Hadad</th><th scope="col">(%)Faldi</th><th scope="col">(%)Athailah</th><th scope="col">Waktu Bayar</th></tr></thead><tbody id="loopingDataSort"></tbody><thead><tr><th scope="col">Total Pengeluaran</th><th scope="col"></th><th scope="col" id="totalPengeluaran"></th><th scope="col"></th><th scope="col"></th><th scope="col"></th><th scope="col"></th><th scope="col"></th></tr></thead></table>';
 
@@ -416,7 +566,6 @@
             <% for (let DataBayar of data) { %>
                 if (<%= DataBayar.tahun %> >= fromTahun && <%= DataBayar.bulan %> >= fromBulan && <%= DataBayar.tanggal %> >= fromTanggal) {
                     if (<%= DataBayar.tahun %> <= untilTahun && <%= DataBayar.bulan %> <= untilBulan && <%= DataBayar.tanggal %> <= untilTanggal) {
-                        console.log(<%= DataBayar.bulan %>)
 
                         xLooping = xLooping + "<tr><th  scope=\"row\"><%= DataBayar.siPembayar %></th><td ><%= DataBayar.bayarApa %></td><td ><%= DataBayar.totalBayar %></td><td ><%= DataBayar.persenPafras %></td><td><%= DataBayar.persenHadad %></td><td><%= DataBayar.persenFaldi %></td><td><%= DataBayar.persenAthailah %></td><td><%= DataBayar.tanggal %>-<%= DataBayar.bulan %>-<%= DataBayar.tahun %></td></tr>";
 
@@ -430,9 +579,176 @@
                         // document.getElementById("persenFaldi").innerHTML = '<%= DataBayar.persenFaldi %>';
                         // document.getElementById("persenAthailahh").innerHTML = '<%= DataBayar.persenAthailah %>';
                         // document.getElementById("tanggall").innerHTML = '<%= DataBayar.tanggal %>-<%= DataBayar.bulan %>-<%= DataBayar.tahun %>';
+
+
+                        // Hitung Total Semua pembayaran
+
+                        jumlah = jumlah + <%= DataBayar.totalBayar %>;
+                        const xPengeluaran = document.getElementById("totalPengeluaran");
+                        xPengeluaran.innerHTML = jumlah;
+
+                        // Hitung Pafras bayar ke yg lain
+                        //1. Hadad
+
+                        if ('<%= DataBayar.siPembayar %>' == 'Hadad') {
+                            persentasePafras = <%= DataBayar.totalBayar %> * <%= DataBayar.persenPafras %> / 100;
+                            totalUtangPafrasHadad = totalUtangPafrasHadad + persentasePafras;
+                        }
+
+                        if ('<%= DataBayar.siPembayar %>' == 'Pafras') {
+                            persentaseHadad = <%= DataBayar.totalBayar %> * <%= DataBayar.persenHadad %> / 100;
+                            totalUtangHadadPafras = totalUtangHadadPafras + persentaseHadad;
+                        }
+
+
+                        //2. Faldi
+
+                        if ('<%= DataBayar.siPembayar %>' == 'Faldi') {
+                            persentasePafras = <%= DataBayar.totalBayar %> * <%= DataBayar.persenPafras %> / 100;
+                            totalUtangPafrasFaldi = totalUtangPafrasFaldi + persentasePafras;
+                        }
+
+                        if ('<%= DataBayar.siPembayar %>' == 'Pafras') {
+                            persentaseFaldi = <%= DataBayar.totalBayar %> * <%= DataBayar.persenFaldi %> / 100;
+                            totalUtangFaldiPafras = totalUtangFaldiPafras + persentaseFaldi;
+                        }
+
+
+                        //3. Athailah
+
+                        if ('<%= DataBayar.siPembayar %>' == 'Athailah') {
+                            persentasePafras = <%= DataBayar.totalBayar %> * <%= DataBayar.persenPafras %> / 100;
+                            totalUtangPafrasAthailah = totalUtangPafrasAthailah + persentasePafras;
+                        }
+
+                        if ('<%= DataBayar.siPembayar %>' == 'Pafras') {
+                            persentaseAthailah = <%= DataBayar.totalBayar %> * <%= DataBayar.persenAthailah %> / 100;
+                            totalUtangAthailahPafras = totalUtangAthailahPafras + persentaseAthailah;
+
+
+                        }
+
+                        // Hitung Hadad bayar ke yg lain
+
+                        //2. Faldi
+
+                        if ('<%= DataBayar.siPembayar %>' == 'Faldi') {
+                            persentaseHadad = <%= DataBayar.totalBayar %> * <%= DataBayar.persenHadad %> / 100;
+                            totalUtangHadadFaldi = totalUtangHadadFaldi + persentaseHadad;
+                        }
+
+                        if ('<%= DataBayar.siPembayar %>' == 'Hadad') {
+                            persentaseFaldi = <%= DataBayar.totalBayar %> * <%= DataBayar.persenFaldi %> / 100;
+                            totalUtangFaldiHadad = totalUtangFaldiHadad + persentaseFaldi;
+                        }
+
+
+                        //3. Athailah
+
+                        if ('<%= DataBayar.siPembayar %>' == 'Athailah') {
+                            persentaseHadad = <%= DataBayar.totalBayar %> * <%= DataBayar.persenHadad %> / 100;
+                            totalUtangHadadAthailah = totalUtangHadadAthailah + persentaseHadad;
+                        }
+
+
+                        if ('<%= DataBayar.siPembayar %>' == 'Hadad') {
+                            persentaseAthailah = <%= DataBayar.totalBayar %> * <%= DataBayar.persenAthailah %> / 100;
+                            totalUtangAthailahHadad = totalUtangAthailahHadad + persentaseAthailah;
+                        }
+                        console.log(totalUtangHadadAthailah)
+                        console.log(totalUtangAthailahHadad)
+
+
+
+                        // Hitung Faldi bayar ke yg lain
+                        //1. athailah
+
+                        if ('<%= DataBayar.siPembayar %>' == 'Athailah') {
+                            persentaseAthailah = <%= DataBayar.totalBayar %> * <%= DataBayar.persenFaldi %> / 100;
+                            totalUtangAthailahFaldi = totalUtangAthailahFaldi + persentaseAthailah;
+                        }
+
+                        if ('<%= DataBayar.siPembayar %>' == 'Faldi') {
+                            persentaseFaldi = <%= DataBayar.totalBayar %> * <%= DataBayar.persenAthailah %> / 100;
+                            totalUtangFaldiAthailah = totalUtangFaldiAthailah + persentaseFaldi;
+                        }
+
                     }
                 }
+                //END TABLE SORTING
+
             <% } %>
+            // PAFRAS -- HADAD
+            var totalAkhirPafrasHadad = totalUtangHadadPafras - totalUtangPafrasHadad;
+            if (totalAkhirPafrasHadad <= 0) {
+                document.getElementById("totalAkhirPafrasHadad").innerHTML = '<a> Pafras punya utang ke Hadad sebesar Rp.</a>' + (-1 * totalAkhirPafrasHadad);
+                document.getElementById("totalAkhirPafrasHadad2").innerHTML = '<a> Pafras punya utang ke Hadad sebesar Rp.</a>' + (-1 * totalAkhirPafrasHadad);
+            } else {
+                document.getElementById("totalAkhirPafrasHadad").innerHTML = '<a> Hadad punya utang ke Pafras sebesar Rp.</a>' + totalAkhirPafrasHadad;
+                document.getElementById("totalAkhirPafrasHadad2").innerHTML = '<a> Hadad punya utang ke Pafras sebesar Rp.</a>' + totalAkhirPafrasHadad;
+            }
+
+            // PAFRAS -- FALDI
+            var totalAkhirPafrasFaldi = totalUtangFaldiPafras - totalUtangPafrasFaldi;
+            document.getElementById("totalAkhirPafrasFaldi").innerHTML = totalAkhirPafrasFaldi;
+
+            if (totalAkhirPafrasFaldi <= 0) {
+                document.getElementById("totalAkhirPafrasFaldi").innerHTML = '<a> Pafras punya utang ke Faldi sebesar Rp.</a>' + (-1 * totalAkhirPafrasFaldi);
+                document.getElementById("totalAkhirPafrasFaldi2").innerHTML = '<a> Pafras punya utang ke Faldi sebesar Rp.</a>' + (-1 * totalAkhirPafrasFaldi);
+            } else {
+                document.getElementById("totalAkhirPafrasFaldi").innerHTML = '<a> Faldi punya utang ke Pafras sebesar Rp.</a>' + totalAkhirPafrasFaldi;
+                document.getElementById("totalAkhirPafrasFaldi2").innerHTML = '<a> Faldi punya utang ke Pafras sebesar Rp.</a>' + totalAkhirPafrasFaldi;
+            }
+
+            // PAFRAS -- ATHAILAH
+            var totalAkhirPafrasAthailah = totalUtangAthailahPafras - totalUtangPafrasAthailah;
+            document.getElementById("totalAkhirPafrasAthailah").innerHTML = totalAkhirPafrasAthailah;
+
+            if (totalAkhirPafrasAthailah <= 0) {
+                document.getElementById("totalAkhirPafrasAthailah").innerHTML = '<a> Pafras punya utang ke Athailah sebesar Rp.</a>' + (-1 * totalAkhirPafrasAthailah);
+                document.getElementById("totalAkhirPafrasAthailah2").innerHTML = '<a> Pafras punya utang ke Athailah sebesar Rp.</a>' + (-1 * totalAkhirPafrasAthailah);
+            } else {
+                document.getElementById("totalAkhirPafrasAthailah").innerHTML = '<a> Athailah punya utang ke Pafras sebesar Rp.</a>' + totalAkhirPafrasAthailah;
+                document.getElementById("totalAkhirPafrasAthailah2").innerHTML = '<a> Athailah punya utang ke Pafras sebesar Rp.</a>' + totalAkhirPafrasAthailah;
+            }
+
+            //HADAD -- FALDI
+            var totalAkhirHadadFaldi = totalUtangFaldiHadad - totalUtangHadadFaldi;
+            document.getElementById("totalAkhirHadadFaldi").innerHTML = totalAkhirHadadFaldi;
+
+            if (totalAkhirHadadFaldi <= 0) {
+                document.getElementById("totalAkhirHadadFaldi").innerHTML = '<a> Hadad punya utang ke Faldi sebesar Rp.</a>' + (-1 * totalAkhirHadadFaldi);
+                document.getElementById("totalAkhirHadadFaldi2").innerHTML = '<a> Hadad punya utang ke Faldi sebesar Rp.</a>' + (-1 * totalAkhirHadadFaldi);
+            } else {
+                document.getElementById("totalAkhirHadadFaldi").innerHTML = '<a> Faldi punya utang ke Hadad sebesar Rp.</a>' + totalAkhirHadadFaldi;
+                document.getElementById("totalAkhirHadadFaldi2").innerHTML = '<a> Faldi punya utang ke Hadad sebesar Rp.</a>' + totalAkhirHadadFaldi;
+            }
+
+            //HADAD -- ATHAILAH
+            var totalAkhirHadadAthailah = totalUtangAthailahHadad - totalUtangHadadAthailah;
+            document.getElementById("totalAkhirHadadAthailah").innerHTML = totalAkhirHadadAthailah;
+
+            if (totalAkhirHadadAthailah <= 0) {
+                document.getElementById("totalAkhirHadadAthailah").innerHTML = '<a> Hadad punya utang ke Athailah sebesar Rp.</a>' + (-1 * totalAkhirHadadAthailah);
+                document.getElementById("totalAkhirHadadAthailah2").innerHTML = '<a> Hadad punya utang ke Athailah sebesar Rp.</a>' + (-1 * totalAkhirHadadAthailah);
+            } else {
+                document.getElementById("totalAkhirHadadAthailah").innerHTML = '<a> Athailah punya utang ke Hadad sebesar Rp.</a>' + totalAkhirHadadAthailah;
+                document.getElementById("totalAkhirHadadAthailah2").innerHTML = '<a> Athailah punya utang ke Hadad sebesar Rp.</a>' + totalAkhirHadadAthailah;
+            }
+
+            //FALDI -- ATHAILAH
+            var totalAkhirFaldiAthailah = totalUtangFaldiAthailah - totalUtangAthailahFaldi;
+
+            if (totalAkhirFaldiAthailah <= 0) {
+                document.getElementById("totalAkhirFaldiAthaillah").innerHTML = '<a> Faldi punya utang ke Athailah sebesar Rp.</a>' + (-1 * totalAkhirFaldiAthailah);
+                document.getElementById("totalAkhirFaldiAthaillah2").innerHTML = '<a> Faldi punya utang ke Athailah sebesar Rp.</a>' + (-1 * totalAkhirFaldiAthailah);
+
+            } else {
+                document.getElementById("totalAkhirFaldiAthaillah").innerHTML = '<a> Athailah punya utang ke Faldi sebesar Rp.</a>' + totalAkhirFaldiAthailah;
+                document.getElementById("totalAkhirFaldiAthaillah2").innerHTML = '<a> Athailah punya utang ke Faldi sebesar Rp.</a>' + totalAkhirFaldiAthailah;
+
+            }
+
         }
     </script>
 </body>
