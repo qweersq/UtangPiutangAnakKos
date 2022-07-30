@@ -37,7 +37,6 @@
                 <button style="margin-top: 10px;" type="submit" class="btn btn-dark" id="Listrik">Listrik</button>
                 <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="Wifi">Wifi</button>
                 <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="Beras">Beras</button>
-                <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="SampahSatpam">Beras</button>
                 <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="AirGalon">Air Galon</button>
                 <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="Gas">Gas</button>
                 <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="SabunCuciPiring">Sabun Cuci
@@ -204,11 +203,6 @@
     <div style="margin-top: 30px;" class="container">
         <h2>Perhitungan Utang Piutang</h2>
         <div class="container">
-            <p>Keterangan :</p>
-            <ul style="margin-top: -20px;">
-                <li>(-) artinya Utang</li>
-                <li>(+) artinya Piutang</li>
-            </ul>
             <h5>Pafras</h5>
             <ul>
                 <li id="totalAkhirPafrasHadad"></li>
@@ -489,13 +483,6 @@
             document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Sabun Cuci Piring ?</b>';
             document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Sabun Cuci Piring </b>';
             document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Sabun Cuci Piring </b>';
-
-        }
-        document.getElementById("Minyak").onclick = function () {
-            // document.getElementById("containerGantiGanti").innerHTML = '<form action="/tambah" method="post"><p style="margin-top: 20px;"> <b> Siapa yang bayar Minyak? </b></p><div><select class="form-select" name="siPembayar"><option value="Pafras">Pafras</option><option value="Hadad">Hadad</option><option value="Faldi">Faldi</option><option value="Athailah">Athailah</option></select><p style="margin-top: 20px;"> <b> Total Pembayaran Minyak</b></p><input style="margin-top: 20px;" type="text" name="totalBayar" class="form-control"><div><p style="margin-top: 20px;"> <b>Persentase Pembagian Minyak</b></p><table class="table" style="margin-bottom: 30px;"><tbody><tr><td> <b>Pafras</b> </td><td><b>Hadad</b></td><td> <b>Faldi</b> </td><td> <b>Athailah</b></td></tr><tr><td><input style="margin-right: 5%; width: 40%;" name="persenPafras" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenHadad" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenFaldi" type="text">%</td><td><input style="margin-right: 5%; width: 40%;" name="persenAthailah" type="text">%</td></tr></tbody></table><a><b> Tanggal Bayar </b></a><input style="width: 5%; margin-left:1%;" placeholder="Tanggal" type="text" name="tanggal"><input style="width: 5%;  margin-left:1%;" placeholder="Bulan" type="text" name="bulan"><input style="width: 5%;margin-left:1%;" placeholder="Tahun" type="text" name="tahun"><br/><button name="button" value="Minyak" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div></div></form>';
-            document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Minyak ?</b>';
-            document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Minyak </b>';
-            document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Minyak </b>';
 
         }
         document.getElementById("Minyak").onclick = function () {
