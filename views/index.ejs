@@ -32,21 +32,19 @@
     <div class="container">
         <div class="containerApaYangDibayar">
             <h5><b>Masukkan data Pembayaran</b></h5>
-            <div class="container">
-                <p style="margin: 20px 0 -5px 0;"> <b> Apa yang dibayar?</b></p>
-                <button style="margin-top: 10px;" type="submit" class="btn btn-dark" id="Listrik">Listrik</button>
-                <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="Wifi">Wifi</button>
-                <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="Beras">Beras</button>
-                <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="AirGalon">Air Galon</button>
-                <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="Gas">Gas</button>
-                <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="SabunCuciPiring">Sabun Cuci
-                    Piring</button>
-                <button style="margin-top: 10px;" type="submit" class="btn btn-dark" id="Minyak">Minyak</button>
-                <button style="margin-top: 10px;" type="submit" class="btn btn-dark" id="Lainnya">Lainnya</button>
-            </div>
         </div>
 
         <div id="containerGantiGanti" class="container">
+            <p style="margin: 20px 0 -5px 0;"> <b> Apa yang dibayar?</b></p>
+            <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="Listrik">Listrik</button>
+            <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="Wifi">Wifi</button>
+            <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="Beras">Beras</button>
+            <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="AirGalon">Air Galon</button>
+            <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="Gas">Gas</button>
+            <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="satpam">Satpam & Sampah</button>
+            <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="Minyak">Minyak</button>
+            <button style="margin-top: 10px;" type="button" class="btn btn-dark" id="Lainnya">Lainnya</button>
+
             <form action="/tambah" method="post">
                 <div id="isiBayarApa"></div>
                 <p id="gantiSiapaYgBayar" style="margin-top: 20px;"><b> Siapa yang bayar Listrik ?</b></p>
@@ -111,8 +109,8 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button name="button" value="Listrik" type="submit" class="btn btn-primary"
-                            style="margin-top: 20px;">Masukkan Data</button>
+                        <div id="jenisPembayaran"><button name="button" value="Listrik" type=" submit"
+                                class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button></div>
                     </div>
                 </div>
             </form>
@@ -121,8 +119,8 @@
         <h2 style="margin-top: 50px;">History Pembayaran selama ....</h2>
         <div class="container">
             <div style="margin-bottom:20px;">
-                <a><b> Dari (bb/mm/yyyy)</b></a><br/>
-                <input pattern="\d*" style="width: 10%;" placeholder="Tanggal" type="text"
+                <a><b> Dari </b></a>
+                <input pattern="\d*" style="width: 10%;  margin-left:1%;" placeholder="Tanggal" type="text"
                     id="dariTanggal" value="01">
                 <input pattern="\d*" style="width: 10%;  margin-left:0,5%;" placeholder="Bulan" type="text"
                     id="dariBulan" value="07">
@@ -131,8 +129,8 @@
             </div>
 
             <div style="margin-bottom:20px;">
-                <a><b> Sampai (bb/mm/yyyy)</b></a><br/>
-                <input pattern="\d*" style="width: 10%;" placeholder="Tanggal" type="text"
+                <a><b> Sampai </b></a>
+                <input pattern="\d*" style="width: 10%;  margin-left:1%;" placeholder="Tanggal" type="text"
                     id="sampaiTanggal" value="30">
                 <input pattern="\d*" style="width: 10%;  margin-left:0,5%;" placeholder="Bulan" type="text"
                     id="sampaiBulan" value="07">
@@ -142,11 +140,11 @@
             <button class="btn btn-dark" type="submit" id="cariDataa" onclick="cariData()">Cari</button>
         </div>
 
-        <div class="containerTableData">
+        <hr/>
+        <div class="containerTableData" style="border: 2px;">
             <table id="tableSemuaData" class="table">
                 <thead>
                     <tr>
-
                         <th scope="col">Si Pembayar</th>
                         <th scope="col">Bayar Apa?</th>
                         <th scope="col">Total Bayar</th>
@@ -202,8 +200,6 @@
                 </thead>
             </table>
         </div>
-
-
     </div>
 
     <div style="margin-top: 30px;" class="container">
@@ -235,7 +231,6 @@
                 <li id="totalAkhirFaldiAthaillah2"></li>
             </ul>
         </div>
-
     </div>
 
 
@@ -246,7 +241,7 @@
     <script type="text/javascript">
 
         function tambahKoma(angka) {
-            return angka.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+            return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
         // Hitung Total Semua pembayaran
@@ -255,7 +250,7 @@
             jumlah = jumlah + <%= DataBayar.totalBayar %>;
             <% } %>
         const x = document.getElementById("totalPengeluaran");
-        x.innerHTML = jumlah;
+        x.innerHTML = tambahKoma(jumlah);
 
         // Hitung Pafras bayar ke yg lain
         //1. Hadad
@@ -281,11 +276,11 @@
         var totalAkhirPafrasHadad = totalUtangHadadPafras - totalUtangPafrasHadad;
 
         if (totalAkhirPafrasHadad <= 0) {
-            document.getElementById("totalAkhirPafrasHadad").innerHTML = '<a> Pafras punya utang ke Hadad sebesar Rp. </a>' + tambahKoma(-1 * totalAkhirPafrasHadad);
-            document.getElementById("totalAkhirPafrasHadad2").innerHTML = '<a> Pafras punya utang ke Hadad sebesar Rp. </a>' + tambahKoma(-1 * totalAkhirPafrasHadad);
+            document.getElementById("totalAkhirPafrasHadad").innerHTML = '<a> Pafras punya utang ke Hadad sebesar Rp.</a>' + tambahKoma(-1 * totalAkhirPafrasHadad);
+            document.getElementById("totalAkhirPafrasHadad2").innerHTML = '<a> Pafras punya utang ke Hadad sebesar Rp.</a>' + tambahKoma(-1 * totalAkhirPafrasHadad);
         } else {
-            document.getElementById("totalAkhirPafrasHadad").innerHTML = '<a> Hadad punya utang ke Pafras sebesar Rp. </a>' + tambahKoma(totalAkhirPafrasHadad);
-            document.getElementById("totalAkhirPafrasHadad2").innerHTML = '<a> Hadad punya utang ke Pafras sebesar Rp. </a>' + tambahKoma(totalAkhirPafrasHadad);
+            document.getElementById("totalAkhirPafrasHadad").innerHTML = '<a> Hadad punya utang ke Pafras sebesar Rp.</a>' + tambahKoma(totalAkhirPafrasHadad);
+            document.getElementById("totalAkhirPafrasHadad2").innerHTML = '<a> Hadad punya utang ke Pafras sebesar Rp.</a>' + tambahKoma(totalAkhirPafrasHadad);
         }
 
 
@@ -313,11 +308,11 @@
         document.getElementById("totalAkhirPafrasFaldi").innerHTML = totalAkhirPafrasFaldi;
 
         if (totalAkhirPafrasFaldi <= 0) {
-            document.getElementById("totalAkhirPafrasFaldi").innerHTML = '<a> Pafras punya utang ke Faldi sebesar Rp.</a>' + (-1 * totalAkhirPafrasFaldi);
-            document.getElementById("totalAkhirPafrasFaldi2").innerHTML = '<a> Pafras punya utang ke Faldi sebesar Rp.</a>' + (-1 * totalAkhirPafrasFaldi);
+            document.getElementById("totalAkhirPafrasFaldi").innerHTML = '<a> Pafras punya utang ke Faldi sebesar Rp.</a>' + tambahKoma(-1 * totalAkhirPafrasFaldi);
+            document.getElementById("totalAkhirPafrasFaldi2").innerHTML = '<a> Pafras punya utang ke Faldi sebesar Rp.</a>' + tambahKoma(-1 * totalAkhirPafrasFaldi);
         } else {
-            document.getElementById("totalAkhirPafrasFaldi").innerHTML = '<a> Faldi punya utang ke Pafras sebesar Rp.</a>' + totalAkhirPafrasFaldi;
-            document.getElementById("totalAkhirPafrasFaldi2").innerHTML = '<a> Faldi punya utang ke Pafras sebesar Rp.</a>' + totalAkhirPafrasFaldi;
+            document.getElementById("totalAkhirPafrasFaldi").innerHTML = '<a> Faldi punya utang ke Pafras sebesar Rp.</a>' + tambahKoma(totalAkhirPafrasFaldi);
+            document.getElementById("totalAkhirPafrasFaldi2").innerHTML = '<a> Faldi punya utang ke Pafras sebesar Rp.</a>' + tambahKoma(totalAkhirPafrasFaldi);
         }
 
 
@@ -347,11 +342,11 @@
         document.getElementById("totalAkhirPafrasAthailah").innerHTML = totalAkhirPafrasAthailah;
 
         if (totalAkhirPafrasAthailah <= 0) {
-            document.getElementById("totalAkhirPafrasAthailah").innerHTML = '<a> Pafras punya utang ke Athailah sebesar Rp.</a>' + (-1 * totalAkhirPafrasAthailah);
-            document.getElementById("totalAkhirPafrasAthailah2").innerHTML = '<a> Pafras punya utang ke Athailah sebesar Rp.</a>' + (-1 * totalAkhirPafrasAthailah);
+            document.getElementById("totalAkhirPafrasAthailah").innerHTML = '<a> Pafras punya utang ke Athailah sebesar Rp.</a>' + tambahKoma(-1 * totalAkhirPafrasAthailah);
+            document.getElementById("totalAkhirPafrasAthailah2").innerHTML = '<a> Pafras punya utang ke Athailah sebesar Rp.</a>' + tambahKoma(-1 * totalAkhirPafrasAthailah);
         } else {
-            document.getElementById("totalAkhirPafrasAthailah").innerHTML = '<a> Athailah punya utang ke Pafras sebesar Rp.</a>' + totalAkhirPafrasAthailah;
-            document.getElementById("totalAkhirPafrasAthailah2").innerHTML = '<a> Athailah punya utang ke Pafras sebesar Rp.</a>' + totalAkhirPafrasAthailah;
+            document.getElementById("totalAkhirPafrasAthailah").innerHTML = '<a> Athailah punya utang ke Pafras sebesar Rp.</a>' + tambahKoma(totalAkhirPafrasAthailah);
+            document.getElementById("totalAkhirPafrasAthailah2").innerHTML = '<a> Athailah punya utang ke Pafras sebesar Rp.</a>' + tambahKoma(totalAkhirPafrasAthailah);
         }
 
 
@@ -383,11 +378,11 @@
         document.getElementById("totalAkhirHadadFaldi").innerHTML = totalAkhirHadadFaldi;
 
         if (totalAkhirHadadFaldi <= 0) {
-            document.getElementById("totalAkhirHadadFaldi").innerHTML = '<a> Hadad punya utang ke Faldi sebesar Rp.</a>' + (-1 * totalAkhirHadadFaldi);
-            document.getElementById("totalAkhirHadadFaldi2").innerHTML = '<a> Hadad punya utang ke Faldi sebesar Rp.</a>' + (-1 * totalAkhirHadadFaldi);
+            document.getElementById("totalAkhirHadadFaldi").innerHTML = '<a> Hadad punya utang ke Faldi sebesar Rp.</a>' + tambahKoma(-1 * totalAkhirHadadFaldi);
+            document.getElementById("totalAkhirHadadFaldi2").innerHTML = '<a> Hadad punya utang ke Faldi sebesar Rp.</a>' + tambahKoma(-1 * totalAkhirHadadFaldi);
         } else {
-            document.getElementById("totalAkhirHadadFaldi").innerHTML = '<a> Faldi punya utang ke Hadad sebesar Rp.</a>' + totalAkhirHadadFaldi;
-            document.getElementById("totalAkhirHadadFaldi2").innerHTML = '<a> Faldi punya utang ke Hadad sebesar Rp.</a>' + totalAkhirHadadFaldi;
+            document.getElementById("totalAkhirHadadFaldi").innerHTML = '<a> Faldi punya utang ke Hadad sebesar Rp.</a>' + tambahKoma(totalAkhirHadadFaldi);
+            document.getElementById("totalAkhirHadadFaldi2").innerHTML = '<a> Faldi punya utang ke Hadad sebesar Rp.</a>' + tambahKoma(totalAkhirHadadFaldi);
         }
 
 
@@ -415,11 +410,11 @@
         document.getElementById("totalAkhirHadadAthailah").innerHTML = totalAkhirHadadAthailah;
 
         if (totalAkhirPafrasAthailah <= 0) {
-            document.getElementById("totalAkhirHadadAthailah").innerHTML = '<a> Hadad punya utang ke Athailah sebesar Rp.</a>' + (-1 * totalAkhirHadadAthailah);
-            document.getElementById("totalAkhirHadadAthailah2").innerHTML = '<a> Hadad punya utang ke Athailah sebesar Rp.</a>' + (-1 * totalAkhirHadadAthailah);
+            document.getElementById("totalAkhirHadadAthailah").innerHTML = '<a> Hadad punya utang ke Athailah sebesar Rp.</a>' + tambahKoma(-1 * totalAkhirHadadAthailah);
+            document.getElementById("totalAkhirHadadAthailah2").innerHTML = '<a> Hadad punya utang ke Athailah sebesar Rp.</a>' + tambahKoma(-1 * totalAkhirHadadAthailah);
         } else {
-            document.getElementById("totalAkhirHadadAthailah").innerHTML = '<a> Athailah punya utang ke Hadad sebesar Rp.</a>' + totalAkhirHadadAthailah;
-            document.getElementById("totalAkhirHadadAthailah2").innerHTML = '<a> Athailah punya utang ke Hadad sebesar Rp.</a>' + totalAkhirHadadAthailah;
+            document.getElementById("totalAkhirHadadAthailah").innerHTML = '<a> Athailah punya utang ke Hadad sebesar Rp.</a>' + tambahKoma(totalAkhirHadadAthailah);
+            document.getElementById("totalAkhirHadadAthailah2").innerHTML = '<a> Athailah punya utang ke Hadad sebesar Rp.</a>' + tambahKoma(totalAkhirHadadAthailah);
         }
 
 
@@ -447,12 +442,12 @@
         var totalAkhirFaldiAthailah = totalUtangFaldiAthailah - totalUtangAthailahFaldi;
 
         if (totalAkhirFaldiAthailah <= 0) {
-            document.getElementById("totalAkhirFaldiAthaillah").innerHTML = '<a> Faldi punya utang ke Athailah sebesar Rp.</a>' + (-1 * totalAkhirFaldiAthailah);
-            document.getElementById("totalAkhirFaldiAthaillah2").innerHTML = '<a> Faldi punya utang ke Athailah sebesar Rp.</a>' + (-1 * totalAkhirFaldiAthailah);
+            document.getElementById("totalAkhirFaldiAthaillah").innerHTML = '<a> Faldi punya utang ke Athailah sebesar Rp.</a>' + tambahKoma(-1 * totalAkhirFaldiAthailah);
+            document.getElementById("totalAkhirFaldiAthaillah2").innerHTML = '<a> Faldi punya utang ke Athailah sebesar Rp.</a>' + tambahKoma(-1 * totalAkhirFaldiAthailah);
 
         } else {
-            document.getElementById("totalAkhirFaldiAthaillah").innerHTML = '<a> Athailah punya utang ke Faldi sebesar Rp.</a>' + totalAkhirFaldiAthailah;
-            document.getElementById("totalAkhirFaldiAthaillah2").innerHTML = '<a> Athailah punya utang ke Faldi sebesar Rp.</a>' + totalAkhirFaldiAthailah;
+            document.getElementById("totalAkhirFaldiAthaillah").innerHTML = '<a> Athailah punya utang ke Faldi sebesar Rp.</a>' + tambahKoma(totalAkhirFaldiAthailah);
+            document.getElementById("totalAkhirFaldiAthaillah2").innerHTML = '<a> Athailah punya utang ke Faldi sebesar Rp.</a>' + tambahKoma(totalAkhirFaldiAthailah);
 
         }
 
@@ -461,43 +456,51 @@
             document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Listrik ?</b>';
             document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Listrik </b>';
             document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Listrik </b>';
+            document.getElementById("jenisPembayaran").innerHTML = '<button name="button" value="Listrik" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button>';
         }
         document.getElementById("Wifi").onclick = function () {
             document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Wifi ?</b>';
             document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Wifi </b>';
-            document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Listrik </b>';
+            document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Wifi </b>';
+            document.getElementById("jenisPembayaran").innerHTML = '<button name="button" value="Wifi" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button>';
         }
         document.getElementById("Beras").onclick = function () {
             document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Beras ?</b>';
             document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Beras </b>';
             document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Beras </b>';
+            document.getElementById("jenisPembayaran").innerHTML = '<button name="button" value="Beras" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button>';
 
         }
         document.getElementById("AirGalon").onclick = function () {
             document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Air Galon ?</b>';
             document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Air Galon </b>';
             document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Air Galon </b>';
+            document.getElementById("jenisPembayaran").innerHTML = '<button name="button" value="Air Galon" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button>';
         }
         document.getElementById("Gas").onclick = function () {
             document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Gas ?</b>';
             document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Gas </b>';
             document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Gas </b>';
+            document.getElementById("jenisPembayaran").innerHTML = '<button name="button" value="Gas" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button>';
 
         }
-        document.getElementById("SabunCuciPiring").onclick = function () {
-            document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Sabun Cuci Piring ?</b>';
-            document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Sabun Cuci Piring </b>';
-            document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Sabun Cuci Piring </b>';
+        document.getElementById("satpam").onclick = function () {
+            document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Satpam & Sampah ?</b>';
+            document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Satpam & Sampah </b>';
+            document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Satpam & Sampah </b>';
+            document.getElementById("jenisPembayaran").innerHTML = '<button name="button" value="Satpam & Sampah" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button>';
 
         }
         document.getElementById("Minyak").onclick = function () {
             document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar Minyak ?</b>';
             document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran Minyak </b>';
             document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian Minyak </b>';
+            document.getElementById("jenisPembayaran").innerHTML = '<button name="button" value="Minyak" type="submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button>';
 
         }
         document.getElementById("Lainnya").onclick = function () {
-            document.getElementById("isiBayarApa").innerHTML = '<p style="margin-top: 20px;"> <b> Bayar Apa?</b></p><input pattern="\d*" style="margin-top: 20px;" type="text" class="form-control">';
+            document.getElementById("jenisPembayaran").innerHTML = '<button type=" submit" class="btn btn-primary" style="margin-top: 20px;">Masukkan Data</button>';
+            document.getElementById("isiBayarApa").innerHTML = '<p style="margin-top: 20px;"> <b> Bayar Apa?</b></p><input name="button" style="margin-top: 20px;" type="text" class="form-control">';
             document.getElementById("gantiSiapaYgBayar").innerHTML = '<b> Siapa yang bayar ?</b>';
             document.getElementById("gantiTotalBayar").innerHTML = '<b> Total Pembayaran </b>';
             document.getElementById("gantiPersentasePembagian").innerHTML = '<b> Persentase Pembagian </b>';
@@ -588,7 +591,7 @@
 
                         jumlah = jumlah + <%= DataBayar.totalBayar %>;
                         const xPengeluaran = document.getElementById("totalPengeluaran");
-                        xPengeluaran.innerHTML = jumlah;
+                        xPengeluaran.innerHTML = tambahKoma(jumlah);
 
                         // Hitung Pafras bayar ke yg lain
                         //1. Hadad
